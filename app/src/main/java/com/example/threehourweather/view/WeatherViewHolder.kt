@@ -1,4 +1,9 @@
 package com.example.threehourweather.view
 
-class WeatherViewHolder {
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+
+class WeatherViewHolder (itemView: View)
+    : RecyclerView.ViewHolder(itemView) {
+
 }
