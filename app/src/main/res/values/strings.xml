@@ -3,6 +3,7 @@
     <string name="marietta_ga">Marietta, GA</string>
     <string name="zip_code">ZIP Code</string>
     <string name="temperature_unit">Temperature Unit</string>
+    <string name="submit">Submit</string>
 
     <string-array name="temp_units">
         <item>Celsius</item>

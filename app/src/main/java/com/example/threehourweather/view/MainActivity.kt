@@ -1,5 +1,6 @@
 package com.example.threehourweather.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,14 @@ class MainActivity : AppCompatActivity() {
 
     var currentViewHolder: CurrentWeatherViewHolder? = null
 
+    val REQ_CODE = 2434
+
+    companion object{
+        val ZIP = "ZIP"
+        val CONVERSION = "CONVERSION"
+    }
+
+
 // http://api.openweathermap.org/data/2.5/weather?q=Marietta,ga&APPID=9dddf9e5f4045a5ea94e37a6847e4dc0
 // http://api.openweathermap.org/data/2.5/forecast?q=Marietta,ga&APPID=9dddf9e5f4045a5ea94e37a6847e4dc0
 // http://api.openweathermap.org/data/2.5/forecast/hourly?q=Marietta,ga&APPID=9dddf9e5f4045a5ea94e37a6847e4dc0
@@ -36,6 +45,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val settingsButton: ImageButton = findViewById(R.id.btn_settings)
+
+        var zip = " "
+        var conversion = " "
+
+        val sharedRef = this.getSharedPreferences("user_pref", Context.MODE_PRIVATE)
+        if(!sharedRef.contains(ZIP)){
+
+        }
+        else{
+            zip = sharedRef.getString(ZIP, "30008")!!
+            conversion = sharedRef.getString(CONVERSION, "Kelvin")!!
+        }
 
         currentViewHolder = CurrentWeatherViewHolder(findViewById(R.id.top_bar))
 
@@ -53,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
         val intent = Intent(this, PreferencesActivity::class.java)
 
-        settingsButton.setOnClickListener { v -> startActivity(intent)}
+        settingsButton.setOnClickListener { v -> startActivityForResult(intent, REQ_CODE)}
     }
 
     private fun populateForecastWeather(weatherViewModel: WeatherViewModel) {
@@ -77,5 +98,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
     }
 }

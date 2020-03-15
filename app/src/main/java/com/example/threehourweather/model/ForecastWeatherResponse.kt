@@ -6,12 +6,12 @@ data class ForecastWeatherResponse (
 
 data class ListResponse (
     var main: MainResponse,
-    var weather: WeatherResponse,
+    var weather: List<WeatherResponse>,
     var dt_text: String             // YYYY-MM-DD HH:MM:SS
 )
 
 data class MainResponse (
-    var temp: Float = 0.00f
+    var temp: Float = 0f
 )
 
 data class WeatherResponse (
