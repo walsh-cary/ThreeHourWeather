@@ -1,30 +1,30 @@
 package com.example.threehourweather.viewmodel
 
 import android.content.Context
-import android.net.Network
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.threehourweather.model.CurrentWeatherResponse
+import com.example.threehourweather.model.ForecastWeatherResponse
 import com.example.threehourweather.model.WeatherNetwork
-import com.example.threehourweather.model.WeatherResponse
 
 class WeatherViewModel(val baseUrl: String) : ViewModel() {
-    private val currentDataSet: MutableLiveData<WeatherResponse> = MutableLiveData()
-    private val forecastDataSet: MutableLiveData<WeatherResponse> = MutableLiveData()
+    private val currentDataSet: MutableLiveData<CurrentWeatherResponse> = MutableLiveData()
+    private val forecastDataSet: MutableLiveData<ForecastWeatherResponse> = MutableLiveData()
 
-    fun getCurrentDataSet(): LiveData<WeatherResponse> {
+    fun getCurrentDataSet(): LiveData<CurrentWeatherResponse> {
         return currentDataSet
     }
 
-    fun getForecastDataSet(): LiveData<WeatherResponse> {
+    fun getForecastDataSet(): LiveData<ForecastWeatherResponse> {
         return forecastDataSet
     }
 
-    fun getCurrentWeatherData(dataSet: WeatherResponse) {
+    fun getCurrentWeatherData(dataSet: CurrentWeatherResponse) {
         this.currentDataSet.value = dataSet
     }
 
-    fun getForecastWeatherData(dataSet: WeatherResponse) {
+    fun getForecastWeatherData(dataSet: ForecastWeatherResponse) {
         this.forecastDataSet.value = dataSet
     }
 

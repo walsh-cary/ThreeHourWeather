@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.threehourweather.R
-import com.example.threehourweather.model.WeatherResponse
+import com.example.threehourweather.model.ForecastWeatherResponse
 
-class WeatherAdapter : RecyclerView.Adapter<WeatherViewHolder>() {
-    var dataSet: WeatherResponse? = null
+class ForecastWeatherAdapter : RecyclerView.Adapter<WeatherViewHolder>() {
+    var dataSet: ForecastWeatherResponse? = null
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -24,11 +24,11 @@ class WeatherAdapter : RecyclerView.Adapter<WeatherViewHolder>() {
         )
 
     override fun getItemCount(): Int {
-        return dataSet?.weather?.size ?: 0
+        return dataSet?.list?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int) {
-        dataSet?.let {
+        dataSet?.list?.get(position)?.let {
             holder.onBind(it)
         }
     }

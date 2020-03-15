@@ -2,7 +2,6 @@ package com.example.threehourweather.model
 
 import android.util.Log
 import com.example.threehourweather.viewmodel.WeatherViewModel
-import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,17 +12,17 @@ class WeatherNetwork(val viewModel: WeatherViewModel) {
     private val TAG = "WeatherNetwork"
 
     fun initRetrofit(baseUrl: String) {
-        getApi(baseUrl).getCurrentWeather()
+        getApi(baseUrl).getCurrentWeather("30067", "9dddf9e5f4045a5ea94e37a6847e4dc0")
             .enqueue(
-                object : Callback<WeatherResponse> {
-                    override fun onFailure(call: Call<WeatherResponse>, t: Throwable) {
+                object : Callback<CurrentWeatherResponse> {
+                    override fun onFailure(call: Call<CurrentWeatherResponse>, t: Throwable) {
                         Log.d(TAG, "onFailure() executed")
-
+                        t.printStackTrace()
                     }
 
                     override fun onResponse(
-                        call: Call<WeatherResponse>,
-                        response: Response<WeatherResponse>
+                        call: Call<CurrentWeatherResponse>,
+                        response: Response<CurrentWeatherResponse>
                     ) {
                         Log.d(TAG, "onResponse() executed: " + response.body().toString())
                         response.body()?.let { viewModel.getCurrentWeatherData(it) }
