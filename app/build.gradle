@@ -2,10 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-def apikeyPropertiesFile = rootProject.file("apikey.properties")
-def apikeyProperties = new Properties()
-apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
-
 android {
 
     compileSdkVersion 29
@@ -19,10 +15,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        // should correspond to key/value pairs inside the file
-        buildConfigField("String", "CURRENT_WEATHER", apikeyProperties['CURRENT_WEATHER'])
-        buildConfigField("String", "FORECAST_WEATHER", apikeyProperties['FORECAST_WEATHER'])
     }
 
     buildTypes {
